@@ -6,7 +6,6 @@ import { AgGridVue } from "ag-grid-vue3";
 import 'ag-grid-enterprise'
 import PageTitle from '@/components/PageTitle.vue'
 import Toaster from '@/components/toaster/Toaster.vue'
-
 import NameRenderer from '@/pages/entity/components/NameRenderer.vue'
 import ActionRenderer from '@/pages/entity/components/ActionRenderer.vue'
 
