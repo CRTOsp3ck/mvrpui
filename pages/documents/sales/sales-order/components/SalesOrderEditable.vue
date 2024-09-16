@@ -2,7 +2,7 @@
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
 import EntitySearchInput from '@/components/input/EntitySearchInput.vue'
-import BaseDocumentItemsChild from './BaseDocumentItemsChild.vue'
+import BaseDocumentItemsChild from '../../components/BaseDocumentItemsChild.vue'
 import { computed } from 'vue'
 import type { SchemaEntityEntity } from '@/composables/schema'
 import type { SchemaSaleSalesOrderView, SchemaSaleSalesOrderItemView } from '@/composables/ext-schema'

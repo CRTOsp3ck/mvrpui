@@ -23,6 +23,7 @@ const colDefs = ref([
     headerCheckboxSelection: true, 
     editable: false,
     suppressMovable: true,
+    filter: 'agNumberColumnFilter', 
   },
   { 
     field: "delivery_note_number", 
@@ -36,10 +37,11 @@ const colDefs = ref([
     headerName:"Ref SO No",
     enableRowGroup: true, 
     flex: 0.75, 
+    filter: 'agNumberColumnFilter', 
     cellRenderer: SalesOrderNumberRenderer,
   },
   { 
-    field: "customer_id", 
+    field: "customer_info.name", 
     headerName:"Customer",
     enableRowGroup: true, 
     flex: 2, 
@@ -51,10 +53,12 @@ const colDefs = ref([
     enableRowGroup: true, 
     enableValue: true, 
     flex: 1, 
-    valueGetter: (params: any) => { return params.data.base_document.net_amount_gen.toFixed(2); },
+    cellDataType: 'number',
+    filter: 'agNumberColumnFilter', 
+    valueFormatter: (params: any) => { return params.data.base_document.net_amount_gen.toFixed(2); },
   },
   { 
-    field: "delivery_note_items", 
+    field: "delivery_note_items.length", 
     headerName:"Quantity", 
     enableRowGroup: true,  
     enableValue: true, 
@@ -67,6 +71,8 @@ const colDefs = ref([
     headerName:"Shipping Date", 
     enableRowGroup: true, 
     flex: 1, 
+    cellDataType: 'date',
+    filter: 'agDateColumnFilter',
     valueFormatter: (params: any) => { return new Date(params.value).toLocaleDateString('en-gb'); },
   },
   { 
@@ -81,6 +87,8 @@ const colDefs = ref([
     enableRowGroup: true, 
     flex: 1, 
     headerName:"Created", 
+    cellDataType: 'date',
+    filter: 'agDateColumnFilter',
     valueFormatter: (params: any) => { return new Date(params.value).toLocaleDateString('en-gb'); },
     hide: true, 
   },
@@ -98,6 +106,10 @@ const colDefs = ref([
 
 const defaultColDef = ref({
   filter: "agTextColumnFilter",
+  filterParams: {
+    closeOnApply: true,
+    buttons: ['clear', 'reset', 'cancel'],
+  },
   floatingFilter: true,
   editable: true,
   sortable: true,
@@ -156,7 +168,7 @@ const datasource : IServerSideDatasource = {
         params.request.endRow = 10;
     }
     const itemsPerPage = params.request.endRow - params.request.startRow;
-    const req = {
+    const req: any = {
         server_side_get_rows_request: params.request,
         items_per_page: itemsPerPage,
         keyword: '',
@@ -169,7 +181,7 @@ const datasource : IServerSideDatasource = {
         if (resp.status === 200 || resp.status === 201) {
             const data: any = resp.data
             params.success({
-                rowData: data.payload,
+                rowData: data.payload || [],
                 rowCount: data.pagination.total_items
             });
         } else if (resp.message || resp.error) {
