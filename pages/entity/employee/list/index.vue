@@ -9,6 +9,7 @@ import Toaster from '@/components/toaster/Toaster.vue'
 
 import NameRenderer from '@/pages/entity/components/NameRenderer.vue'
 import ActionRenderer from '@/pages/entity/components/ActionRenderer.vue'
+import StatusRenderer from '@/pages/entity/components/StatusRenderer.vue'
 
 const colDefs = ref([
   { 
@@ -17,6 +18,9 @@ const colDefs = ref([
     flex: 0.75, 
     checkboxSelection: true,
     headerCheckboxSelection: true, 
+    editable: false,
+    suppressMovable: true,
+    filter: 'agNumberColumnFilter', 
   },
   { 
     field: "name", 
@@ -44,13 +48,16 @@ const colDefs = ref([
     field: "status", 
     enableRowGroup: true, 
     flex: 0.75, 
+    cellRenderer: StatusRenderer
   },
   { 
     field: "created_at", 
     enableRowGroup: true, 
     flex: 0.75, 
     headerName:"Created", 
-    valueFormatter: (params: any) => { return new Date(params.value).toLocaleDateString('en-gb'); } 
+    valueFormatter: (params: any) => { return new Date(params.value).toLocaleDateString('en-gb'); },
+    cellDataType: 'date',
+    filter: 'agDateColumnFilter',
   },
   { 
     field: "actions", 
@@ -59,13 +66,16 @@ const colDefs = ref([
     floatingFilter: false,
     editable: false,
     sortable: false,
-    selectable: false,
     cellRenderer: ActionRenderer 
   },
 ]);
 
 const defaultColDef = ref({
   filter: "agTextColumnFilter",
+  filterParams: {
+    closeOnApply: true,
+    buttons: ['clear', 'reset', 'cancel'],
+  },
   floatingFilter: true,
   editable: true,
   sortable: true,
@@ -124,9 +134,8 @@ const datasource : IServerSideDatasource = {
     if (!params.request.endRow) {
         params.request.endRow = 10;
     }
-    console.log(JSON.stringify(params.request, null, 1));
     const itemsPerPage = params.request.endRow - params.request.startRow;
-    const req = {
+    const req: any = {
         server_side_get_rows_request: params.request,
         items_per_page: itemsPerPage,
         keyword: '',
@@ -140,7 +149,7 @@ const datasource : IServerSideDatasource = {
         if (resp.status === 200 || resp.status === 201) {
             const data: any = resp.data
             params.success({
-                rowData: data.payload,
+                rowData: data.payload || [],
                 rowCount: data.pagination.total_items
             });
         } else if (resp.message || resp.error) {

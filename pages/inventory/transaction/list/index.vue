@@ -19,6 +19,7 @@ const colDefs = ref([
     headerCheckboxSelection: true, 
     editable: false,
     suppressMovable: true,
+    filter: 'agNumberColumnFilter', 
   },
   { 
     field: "inventory_id", 
@@ -26,6 +27,7 @@ const colDefs = ref([
     enableRowGroup: true, 
     flex: 1, 
     cellRenderer: InventoryRenderer,
+    filter: 'agNumberColumnFilter', 
   },
   { 
     field: "transaction_type",
@@ -39,13 +41,17 @@ const colDefs = ref([
     enableRowGroup: true, 
     enableValue: true, 
     flex: 0.75, 
-    // valueFormatter: (params: any) => { return params.value.toFixed(2); } 
+    cellDataType: 'number',
+    filter: 'agNumberColumnFilter', 
+    valueFormatter: (params: any) => { return parseFloat(params.value) + " Unit(s)"; } 
   },
   { 
     field: "transaction_date", 
     headerName:"Transaction Date", 
     enableRowGroup: true, 
     flex: 1, 
+    cellDataType: 'date',
+    filter: 'agDateColumnFilter',
     valueFormatter: (params: any) => { return new Date(params.value).toLocaleDateString('en-gb'); },
   },
   { 
@@ -57,6 +63,8 @@ const colDefs = ref([
     enableRowGroup: true, 
     flex: 1, 
     headerName:"Created", 
+    cellDataType: 'date',
+    filter: 'agDateColumnFilter',
     valueFormatter: (params: any) => { return new Date(params.value).toLocaleDateString('en-gb'); },
     hide: true, 
   },
@@ -64,6 +72,10 @@ const colDefs = ref([
 
 const defaultColDef = ref({
   filter: "agTextColumnFilter",
+  filterParams: {
+    closeOnApply: true,
+    buttons: ['clear', 'reset', 'cancel'],
+  },
   floatingFilter: true,
   editable: true,
   sortable: true,
@@ -122,7 +134,7 @@ const datasource : IServerSideDatasource = {
         params.request.endRow = 10;
     }
     const itemsPerPage = params.request.endRow - params.request.startRow;
-    const req = {
+    const req: any = {
         server_side_get_rows_request: params.request,
         items_per_page: itemsPerPage,
         keyword: '',
@@ -135,7 +147,7 @@ const datasource : IServerSideDatasource = {
         if (resp.status === 200 || resp.status === 201) {
             const data: any = resp.data
             params.success({
-                rowData: data.payload,
+                rowData: data.payload || [],
                 rowCount: data.pagination.total_items
             });
         } else if (resp.message || resp.error) {
