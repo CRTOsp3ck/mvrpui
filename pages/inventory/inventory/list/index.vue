@@ -24,6 +24,17 @@ const colDefs = ref([
     filter: 'agNumberColumnFilter', 
   },
   { 
+    field: "inventory_number", 
+    headerName:"Code",
+    enableRowGroup: true, 
+    flex: 1, 
+  },
+  { 
+    field: "item.brand", 
+    enableRowGroup: true, 
+    flex: 1, 
+  },
+  { 
     field: "item.name", 
     enableRowGroup: true, 
     flex: 2, 

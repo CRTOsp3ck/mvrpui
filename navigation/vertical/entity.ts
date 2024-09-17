@@ -3,17 +3,16 @@ export default [
   {
     title: 'Directory',
     icon: { icon: 'tabler-home-2' },
-    to: 'entity-customer-list',
+    children: [
+      { title: 'Customer', to: 'entity-customer-list' },
+      { title: 'Employee', to: 'entity-employee-list' },
+      { title: 'Vendor', to: 'entity-vendor-list' },
+    ],
   },
   {
     title: 'Classification',
     icon: { icon: 'tabler-home-2' },
-    to: 'entity-employee-list',
+    to: 'entity-classification',
   },
-  // {
-  //   title: 'Vendor',
-  //   icon: { icon: 'tabler-home-2' },
-  //   to: 'entity-vendor-list',
-  // },
 ]
   

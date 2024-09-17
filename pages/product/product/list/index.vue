@@ -23,6 +23,16 @@ const colDefs = ref([
     filter: 'agNumberColumnFilter', 
   },
   { 
+    field: "code", 
+    enableRowGroup: true, 
+    flex: 1, 
+  },
+  { 
+    field: "brand", 
+    enableRowGroup: true, 
+    flex: 1, 
+  },
+  { 
     field: "name", 
     enableRowGroup: true, 
     flex: 2, 

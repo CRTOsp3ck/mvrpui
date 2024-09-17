@@ -19,6 +19,17 @@ const getViewItemPathByType = () => {
 <template>
   <div>
     <div class="d-flex align-center">
+      <NuxtLink :to="{ name: getViewItemPathByType(), params: { id: data.id } }">
+        {{ data.name }}
+      </NuxtLink>
+    </div>
+  </div>
+</template>
+
+<!-- 
+<template>
+  <div>
+    <div class="d-flex align-center">
       <div class="d-flex flex-column">
         <span class="text-base">
           <NuxtLink :to="{ name: getViewItemPathByType(), params: { id: data.id } }">
@@ -29,4 +40,5 @@ const getViewItemPathByType = () => {
       </div>
     </div>
   </div>
-</template>
+</template> 
+-->
