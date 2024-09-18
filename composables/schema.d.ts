@@ -1819,6 +1819,117 @@ export type paths = {
         patch?: never;
         trace?: never;
     };
+    "/v1/main/invoice/credit_note_view": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HtrespResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/main/invoice/credit_note_view/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HtrespResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/main/invoice/credit_note_view/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DtoSearchCreditNoteDTO"];
+                };
+            };
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HtrespResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/main/invoice/debit_note": {
         parameters: {
             query?: never;
@@ -2141,6 +2252,117 @@ export type paths = {
         trace?: never;
     };
     "/v1/main/invoice/invoice/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DtoSearchInvoiceDTO"];
+                };
+            };
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HtrespResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/main/invoice/invoice_view": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HtrespResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/main/invoice/invoice_view/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HtrespResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/main/invoice/invoice_view/search": {
         parameters: {
             query?: never;
             header?: never;
@@ -4062,10 +4284,20 @@ export type components = {
         DtoCreateCreditNoteDTO: {
             base_document?: components["schemas"]["BaseBaseDocument"];
             credit_note?: components["schemas"]["InvoiceCreditNote"];
+            items?: components["schemas"]["DtoCreateCreditNoteItemDTO"][] | null;
+        };
+        DtoCreateCreditNoteItemDTO: {
+            base_document_item?: components["schemas"]["BaseBaseDocumentItem"];
+            credit_note_item?: components["schemas"]["InvoiceCreditNoteItem"];
         };
         DtoCreateDebitNoteDTO: {
             base_document?: components["schemas"]["BaseBaseDocument"];
             debit_note?: components["schemas"]["InvoiceDebitNote"];
+            items?: components["schemas"]["DtoCreateDebitNoteItemDTO"][] | null;
+        };
+        DtoCreateDebitNoteItemDTO: {
+            base_document_item?: components["schemas"]["BaseBaseDocumentItem"];
+            debit_note_item?: components["schemas"]["InvoiceDebitNoteItem"];
         };
         DtoCreateDeliveryNoteDTO: {
             base_document?: components["schemas"]["BaseBaseDocument"];
@@ -4327,10 +4559,20 @@ export type components = {
         DtoUpdateCreditNoteDTO: {
             base_document?: components["schemas"]["BaseBaseDocument"];
             credit_note?: components["schemas"]["InvoiceCreditNote"];
+            items?: components["schemas"]["DtoUpdateCreditNoteItemDTO"][] | null;
+        };
+        DtoUpdateCreditNoteItemDTO: {
+            base_document_item?: components["schemas"]["BaseBaseDocumentItem"];
+            credit_note_item?: components["schemas"]["InvoiceCreditNoteItem"];
         };
         DtoUpdateDebitNoteDTO: {
             base_document?: components["schemas"]["BaseBaseDocument"];
             debit_note?: components["schemas"]["InvoiceDebitNote"];
+            items?: components["schemas"]["DtoUpdateDebitNoteItemDTO"][] | null;
+        };
+        DtoUpdateDebitNoteItemDTO: {
+            base_document_item?: components["schemas"]["BaseBaseDocumentItem"];
+            debit_note_item?: components["schemas"]["InvoiceDebitNoteItem"];
         };
         DtoUpdateDeliveryNoteDTO: {
             base_document?: components["schemas"]["BaseBaseDocument"];
@@ -4563,15 +4805,36 @@ export type components = {
             updated_at?: string;
         };
         InvoiceCreditNote: {
+            additional_charges?: number;
             base_document_id?: number;
             /** Format: date-time */
             created_at?: string;
             credit_note_number?: string;
+            customer_id?: number;
             /** Format: date-time */
             deleted_at?: string;
             id?: number;
+            /** Format: date-time */
+            issue_date?: string;
             reason_for_issuance?: string;
-            reference_invoice_id?: number;
+            total_value_gen?: number;
+            /** Format: date-time */
+            updated_at?: string;
+        };
+        InvoiceCreditNoteItem: {
+            base_document_item_id?: number;
+            /** Format: date-time */
+            created_at?: string;
+            credit_note_id?: number;
+            /** Format: date-time */
+            deleted_at?: string;
+            description?: string;
+            id?: number;
+            invoice_item_id?: number;
+            name?: string;
+            quantity?: number;
+            total_value_gen?: number;
+            unit_value?: number;
             /** Format: date-time */
             updated_at?: string;
         };
@@ -4580,12 +4843,32 @@ export type components = {
             base_document_id?: number;
             /** Format: date-time */
             created_at?: string;
+            customer_id?: number;
             debit_note_number?: string;
             /** Format: date-time */
             deleted_at?: string;
             id?: number;
+            invoice_id?: number;
             reason_for_issuance?: string;
-            reference_invoice_id?: number;
+            total_value_gen?: number;
+            /** Format: date-time */
+            updated_at?: string;
+        };
+        InvoiceDebitNoteItem: {
+            additional_charges?: number;
+            base_document_item_id?: number;
+            /** Format: date-time */
+            created_at?: string;
+            debit_note_id?: number;
+            /** Format: date-time */
+            deleted_at?: string;
+            description?: string;
+            id?: number;
+            invoice_item_id?: number;
+            name?: string;
+            quantity?: number;
+            total_value?: number;
+            unit_value?: number;
             /** Format: date-time */
             updated_at?: string;
         };
@@ -4663,9 +4946,13 @@ export type components = {
             updated_at?: string;
         };
         QueryFilterItem: {
-            filter?: string;
-            filterTo?: string;
+            conditions?: components["schemas"]["QueryFilterItem"][];
+            dateFrom?: string;
+            dateTo?: string;
+            filter?: unknown;
+            filterTo?: unknown;
             filterType?: string;
+            operator?: string;
             type?: string;
         };
         QueryFilterModel: {
@@ -4875,7 +5162,9 @@ export type SchemaBaseBaseDocument = components['schemas']['BaseBaseDocument'];
 export type SchemaBaseBaseDocumentItem = components['schemas']['BaseBaseDocumentItem'];
 export type SchemaDtoBaseEnumDto = components['schemas']['DtoBaseEnumDTO'];
 export type SchemaDtoCreateCreditNoteDto = components['schemas']['DtoCreateCreditNoteDTO'];
+export type SchemaDtoCreateCreditNoteItemDto = components['schemas']['DtoCreateCreditNoteItemDTO'];
 export type SchemaDtoCreateDebitNoteDto = components['schemas']['DtoCreateDebitNoteDTO'];
+export type SchemaDtoCreateDebitNoteItemDto = components['schemas']['DtoCreateDebitNoteItemDTO'];
 export type SchemaDtoCreateDeliveryNoteDto = components['schemas']['DtoCreateDeliveryNoteDTO'];
 export type SchemaDtoCreateDeliveryNoteItemDto = components['schemas']['DtoCreateDeliveryNoteItemDTO'];
 export type SchemaDtoCreateEntityDto = components['schemas']['DtoCreateEntityDTO'];
@@ -4923,7 +5212,9 @@ export type SchemaDtoSearchSalesOrderDto = components['schemas']['DtoSearchSales
 export type SchemaDtoSearchSalesQuotationDto = components['schemas']['DtoSearchSalesQuotationDTO'];
 export type SchemaDtoSearchStockCountSheetDto = components['schemas']['DtoSearchStockCountSheetDTO'];
 export type SchemaDtoUpdateCreditNoteDto = components['schemas']['DtoUpdateCreditNoteDTO'];
+export type SchemaDtoUpdateCreditNoteItemDto = components['schemas']['DtoUpdateCreditNoteItemDTO'];
 export type SchemaDtoUpdateDebitNoteDto = components['schemas']['DtoUpdateDebitNoteDTO'];
+export type SchemaDtoUpdateDebitNoteItemDto = components['schemas']['DtoUpdateDebitNoteItemDTO'];
 export type SchemaDtoUpdateDeliveryNoteDto = components['schemas']['DtoUpdateDeliveryNoteDTO'];
 export type SchemaDtoUpdateDeliveryNoteItemDto = components['schemas']['DtoUpdateDeliveryNoteItemDTO'];
 export type SchemaDtoUpdateEntityDto = components['schemas']['DtoUpdateEntityDTO'];
@@ -4957,7 +5248,9 @@ export type SchemaInventoryReturnMerchandiseAuthorization = components['schemas'
 export type SchemaInventoryReturnMerchandiseAuthorizationItem = components['schemas']['InventoryReturnMerchandiseAuthorizationItem'];
 export type SchemaInventoryStockCountSheet = components['schemas']['InventoryStockCountSheet'];
 export type SchemaInvoiceCreditNote = components['schemas']['InvoiceCreditNote'];
+export type SchemaInvoiceCreditNoteItem = components['schemas']['InvoiceCreditNoteItem'];
 export type SchemaInvoiceDebitNote = components['schemas']['InvoiceDebitNote'];
+export type SchemaInvoiceDebitNoteItem = components['schemas']['InvoiceDebitNoteItem'];
 export type SchemaInvoiceInvoice = components['schemas']['InvoiceInvoice'];
 export type SchemaInvoiceInvoiceItem = components['schemas']['InvoiceInvoiceItem'];
 export type SchemaInvoicePaymentReceipt = components['schemas']['InvoicePaymentReceipt'];

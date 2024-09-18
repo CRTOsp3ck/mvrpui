@@ -86,9 +86,9 @@ export type SchemaSaleSalesOrderView = {
     ship_to_information?: Record<string, any>;
     sales_representative_employee_id?: number;
     order_status?: string;
-    // created_at?: string;
-    // updated_at?: string;
-    // deleted_at?: string;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
     vendor_info?: SchemaEntityEntity;
     customer_info?: SchemaEntityEntity;
     sales_representative_info?: SchemaEntityEntity;
@@ -100,9 +100,9 @@ export type SchemaSaleSalesOrderItemView = {
     id?: number;
     sales_order_id?: number;
     base_document_item_id?: number;
-    // created_at?: string;
-    // deleted_at?: string;
-    // updated_at?: string;
+    created_at?: string;
+    deleted_at?: string;
+    updated_at?: string;
     base_document_item: SchemaBaseBaseDocumentItem;
     inventory_info?: SchemaInventoryInventoryView;
 };
@@ -118,9 +118,9 @@ export type SchemaSaleSalesQuotationView = {
     requested_by?: Record<string, any>;
     prepared_by_employee_id?: number;
     quotation_status?: string;
-    // created_at?: string;
-    // deleted_at?: string;
-    // updated_at?: string;
+    created_at?: string;
+    deleted_at?: string;
+    updated_at?: string;
     base_document: SchemaBaseBaseDocument;
     vendor_info?: SchemaEntityEntity;
     customer_info?: SchemaEntityEntity;
@@ -132,9 +132,9 @@ export type SchemaSaleSalesQuotationItemView = {
     id?: number;
     base_document_item_id?: number;
     sales_quotation_id?: number;
-    // created_at?: string;
-    // updated_at?: string;
-    // deleted_at?: string;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
     base_document_item: SchemaBaseBaseDocumentItem;
     inventory_info?: SchemaInventoryInventoryView;
 };
@@ -154,9 +154,9 @@ export type SchemaSaleDeliveryNoteView = {
     shipping_personnel_information?: Record<string, any>;
     received_by?: Record<string, any>;
     overall_goods_condition?: string;
-    // created_at?: string;
-    // updated_at?: string;
-    // deleted_at?: string;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
     base_document: SchemaBaseBaseDocument;
     vendor_info?: SchemaEntityEntity;
     customer_info?: SchemaEntityEntity;
@@ -168,9 +168,9 @@ export type SchemaSaleDeliveryNoteItemView = {
     base_document_item_id?: number;
     delivery_note_id?: number;
     goods_condition?: string;
-    // created_at?: string;
-    // updated_at?: string;
-    // deleted_at?: string;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
     base_document_item: SchemaBaseBaseDocumentItem;
     inventory_info?: SchemaInventoryInventoryView;
 };
@@ -184,9 +184,9 @@ export type SchemaSaleGoodsReturnNoteView = {
     receiving_location_information?: Record<string, any>;
     received_by_employee_id?: number;
     overall_goods_condition?: string;
-    // created_at?: string;
-    // updated_at?: string;
-    // deleted_at?: string;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
     base_document: SchemaBaseBaseDocument;
     customer_info?: SchemaEntityEntity;
     goods_return_note_items: SchemaSaleGoodsReturnNoteItemView[];
@@ -203,9 +203,42 @@ export type SchemaSaleGoodsReturnNoteItemView = {
     return_quantity: number;
     return_condition?: string;
     return_reason?: string;
-    // created_at?: string;
-    // updated_at?: string;
-    // deleted_at?: string;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
     base_document_item: SchemaBaseBaseDocumentItem;
     inventory_info?: SchemaInventoryInventoryView;
 };
+
+export type SchemaInvoiceCreditNoteView = {
+    id?: number;
+    base_document_id?: number;
+    credit_note_number?: string;
+    customer_id?: number;
+    issue_date?: string;
+    reason_for_issuance?: string;
+    additional_charges?: number;
+    total_value_gen?: number;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
+    base_document: SchemaBaseBaseDocument;
+    customer_info?: SchemaEntityEntity;
+    credit_note_items?: SchemaInvoiceCreditNoteItemView[];
+};
+
+export type SchemaInvoiceCreditNoteItemView = {
+    id?: number;
+    credit_note_id?: number;
+    invoice_item_id?: number;
+    name?: string;
+    description?: string;
+    quantity?: number;
+    unit_value?: number;
+    total_value_gen?: number;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
+    base_document_item?: SchemaBaseBaseDocumentItem;
+    invoice_info?: any;    
+}
