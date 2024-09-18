@@ -76,6 +76,32 @@ export type SchemaInventoryStockCountSheetView = {
     counted_by_info?: SchemaEntityEntity;
 };
 
+export type SchemaInvoiceSalesInvoiceView = {
+    id?: number;
+    base_document_id?: number;
+    invoice_number?: string;
+    vendor_id?: number;
+    customer_id?: number;
+    payment_due_date?: string;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
+    customer_info?: SchemaEntityEntity;
+    base_document: SchemaBaseBaseDocument;
+    invoice_items: SchemaInvoiceSalesInvoiceItemView[];
+};
+
+export type SchemaInvoiceSalesInvoiceItemView = {
+    id?: number;
+    base_document_item_id?: number;
+    invoice_id?: number;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
+    base_document_item: SchemaBaseBaseDocumentItem;
+    inventory_info?: SchemaInventoryInventoryView;
+};
+
 export type SchemaSaleSalesOrderView = {
     id?: number;
     base_document_id?: number;
