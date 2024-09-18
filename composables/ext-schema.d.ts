@@ -3,6 +3,7 @@ import type {
     SchemaInventoryInventoryTransaction,
     SchemaInventoryGoodsIssueNoteItem,
     SchemaInventoryReturnMerchandiseAuthorizationItem,
+    SchemaInvoicePaymentReceiptItem,
     SchemaEntityEntity,
     SchemaBaseBaseDocument,
     SchemaBaseBaseDocumentItem, 
@@ -242,3 +243,19 @@ export type SchemaInvoiceCreditNoteItemView = {
     base_document_item?: SchemaBaseBaseDocumentItem;
     invoice_info?: any;    
 }
+
+export type SchemaInvoicePaymentReceiptView = {
+    id: number;
+    payment_receipt_number: string;
+    invoice_id: number;
+    date_of_payment: string;
+    payer_id: number;
+    payee_id: number;
+    total_value_gen?: number;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
+    payer_info?: SchemaEntityEntity;
+    payee_info?: SchemaEntityEntity;
+    payment_receipt_items?: SchemaInvoicePaymentReceiptItem[];
+};

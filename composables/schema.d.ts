@@ -2581,6 +2581,117 @@ export type paths = {
         patch?: never;
         trace?: never;
     };
+    "/v1/main/invoice/payment_receipt_view": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HtrespResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/main/invoice/payment_receipt_view/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HtrespResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/main/invoice/payment_receipt_view/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DtoSearchPaymentReceiptDTO"];
+                };
+            };
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HtrespResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/main/item/item": {
         parameters: {
             query?: never;
@@ -4237,6 +4348,7 @@ export type components = {
             issue_date?: string;
             net_amount_gen?: number;
             other_fees?: number;
+            payment_amount?: number;
             payment_instructions?: string;
             payment_status?: string;
             payment_terms?: string;
@@ -4357,12 +4469,10 @@ export type components = {
             order_confirmation_item?: components["schemas"]["SaleOrderConfirmationItem"];
         };
         DtoCreatePaymentReceiptDTO: {
-            base_document?: components["schemas"]["BaseBaseDocument"];
             items?: components["schemas"]["DtoCreatePaymentReceiptItemDTO"][] | null;
             payment_receipt?: components["schemas"]["InvoicePaymentReceipt"];
         };
         DtoCreatePaymentReceiptItemDTO: {
-            base_document_item?: components["schemas"]["BaseBaseDocumentItem"];
             payment_receipt_item?: components["schemas"]["InvoicePaymentReceiptItem"];
         };
         DtoCreateReturnMerchandiseAuthorizationDTO: {
@@ -4630,12 +4740,10 @@ export type components = {
             order_confirmation_item?: components["schemas"]["SaleOrderConfirmationItem"];
         };
         DtoUpdatePaymentReceiptDTO: {
-            base_document?: components["schemas"]["BaseBaseDocument"];
             items?: components["schemas"]["DtoUpdatePaymentReceiptItemDTO"][] | null;
             payment_receipt?: components["schemas"]["InvoicePaymentReceipt"];
         };
         DtoUpdatePaymentReceiptItemDTO: {
-            base_document_item?: components["schemas"]["BaseBaseDocumentItem"];
             payment_receipt_item?: components["schemas"]["InvoicePaymentReceiptItem"];
         };
         DtoUpdateReturnMerchandiseAuthorizationDTO: {
@@ -4899,7 +5007,6 @@ export type components = {
             updated_at?: string;
         };
         InvoicePaymentReceipt: {
-            base_document_id?: number;
             /** Format: date-time */
             created_at?: string;
             /** Format: date-time */
@@ -4911,17 +5018,22 @@ export type components = {
             payee_id?: number;
             payer_id?: number;
             payment_receipt_number?: string;
+            total_value_gen?: number;
             /** Format: date-time */
             updated_at?: string;
         };
         InvoicePaymentReceiptItem: {
-            base_document_item_id?: number;
             /** Format: date-time */
             created_at?: string;
             /** Format: date-time */
             deleted_at?: string;
+            description?: string;
             id?: number;
+            name?: string;
             payment_receipt_id?: number;
+            quantity?: number;
+            total_value_gen?: number;
+            unit_value?: number;
             /** Format: date-time */
             updated_at?: string;
         };

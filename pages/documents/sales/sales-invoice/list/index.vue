@@ -173,7 +173,6 @@ const datasource : IServerSideDatasource = {
         age: params.request.startRow / itemsPerPage + 1,
         sort_by: 'desc',
     }
-    console.log(JSON.stringify(req,null,2));
     searchSalesInvoiceViewService(req)
     .then((resp) => {
         if (resp.status === 200 || resp.status === 201) {
